@@ -23,10 +23,26 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		AAD655D22E51A5D00096A1E7 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		AAD654D52E4B0FD40096A1E7 /* Beri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beri.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD654E22E4B0FD60096A1E7 /* BeriTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeriTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD654EC2E4B0FD60096A1E7 /* BeriUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeriUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAD655B92E51A5CD0096A1E7 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		AAD655BB2E51A5CE0096A1E7 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		AAD655D32E51AA320096A1E7 /* BeriWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeriWidgetExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,9 +91,11 @@
 		AAD654CC2E4B0FD40096A1E7 = {
 			isa = PBXGroup;
 			children = (
+				AAD655D32E51AA320096A1E7 /* BeriWidgetExtension.entitlements */,
 				AAD654D72E4B0FD40096A1E7 /* Beri */,
 				AAD654E52E4B0FD60096A1E7 /* BeriTests */,
 				AAD654EF2E4B0FD60096A1E7 /* BeriUITests */,
+				AAD655B82E51A5CD0096A1E7 /* Frameworks */,
 				AAD654D62E4B0FD40096A1E7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,6 +110,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		AAD655B82E51A5CD0096A1E7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AAD655B92E51A5CD0096A1E7 /* WidgetKit.framework */,
+				AAD655BB2E51A5CE0096A1E7 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -102,6 +129,7 @@
 				AAD654D12E4B0FD40096A1E7 /* Sources */,
 				AAD654D22E4B0FD40096A1E7 /* Frameworks */,
 				AAD654D32E4B0FD40096A1E7 /* Resources */,
+				AAD655D22E51A5D00096A1E7 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -395,6 +423,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Beri/Beri.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CC45F3G586;
@@ -423,6 +452,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Beri/Beri.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CC45F3G586;

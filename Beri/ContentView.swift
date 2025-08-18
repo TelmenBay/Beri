@@ -8,14 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var model = AppModel()
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView(selection: $model.selectedTab) {
+            WidgetsView()
+                .tag(0)
+            HomeView()
+                .tag(1)
+            ProfileView()
+                .tag(2)
         }
-        .padding()
+        .environmentObject(model)
+        .tabViewStyle(.page(indexDisplayMode: .never))
+        .safeAreaInset(edge: .bottom) {
+            ArtisticTabBar(selection: $model.selectedTab)
+                .ignoresSafeArea(edges: .bottom)
+        }
     }
 }
 
