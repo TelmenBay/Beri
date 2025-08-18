@@ -9,9 +9,17 @@ import SwiftUI
 
 @main
 struct BeriApp: App {
+    @State private var didFinishSplash: Bool = false
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Group {
+                if didFinishSplash {
+                    ContentView()
+                } else {
+                    SplashView(isActive: $didFinishSplash)
+                        .transition(.opacity)
+                }
+            }
         }
     }
 }
