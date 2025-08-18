@@ -42,7 +42,6 @@
 		AAD654EC2E4B0FD60096A1E7 /* BeriUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeriUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD655B92E51A5CD0096A1E7 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		AAD655BB2E51A5CE0096A1E7 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		AAD655D32E51AA320096A1E7 /* BeriWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeriWidgetExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -91,7 +90,6 @@
 		AAD654CC2E4B0FD40096A1E7 = {
 			isa = PBXGroup;
 			children = (
-				AAD655D32E51AA320096A1E7 /* BeriWidgetExtension.entitlements */,
 				AAD654D72E4B0FD40096A1E7 /* Beri */,
 				AAD654E52E4B0FD60096A1E7 /* BeriTests */,
 				AAD654EF2E4B0FD60096A1E7 /* BeriUITests */,

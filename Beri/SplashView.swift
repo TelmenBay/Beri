@@ -15,16 +15,10 @@ struct SplashView: View {
             Color(.systemBackground)
                 .ignoresSafeArea()
 
-            VStack(spacing: 20) {
-                Image("Logo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 140, height: 140)
-                    .shadow(radius: 12)
-
-                Text("Beri")
-                    .font(.system(size: 34, weight: .bold))
-            }
+            Image("Logo")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 140, height: 140)
         }
         .task {
             try? await Task.sleep(nanoseconds: 1_200_000_000)
