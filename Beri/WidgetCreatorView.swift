@@ -237,7 +237,8 @@ struct WidgetCreatorView: View {
                     ColorPicker("", selection: $selectedColor)
                         .labelsHidden()
                 }
-                .padding(.horizontal, 2)
+                .padding(.leading, 2)
+                .padding(.trailing, 20)
             }
 
             // Actions (UI only)

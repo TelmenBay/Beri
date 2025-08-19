@@ -9,20 +9,14 @@ import SwiftUI
 
 struct ArtisticTabBar: View {
     @Binding var selection: Int // 0 widgets, 1 home, 2 profile
+    static let height: CGFloat = 68
 
     var body: some View {
         ZStack {
-            // Solid purple bar (no glass/blur)
-            RoundedRectangle(cornerRadius: 14, style: .continuous)
+            // Full-width solid background for the entire nav section
+            Rectangle()
                 .fill(Palette.primaryDark)
-                .frame(height: 68)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 14, style: .continuous)
-                        .stroke(Palette.primary.opacity(0.45), lineWidth: 1)
-                )
-                .shadow(color: .black.opacity(0.2), radius: 14, x: 0, y: 8)
-                .padding(.horizontal, 16)
-                .padding(.bottom, 8)
+                .ignoresSafeArea(edges: .bottom)
 
             // Icons
             HStack {
@@ -32,11 +26,11 @@ struct ArtisticTabBar: View {
                 Spacer()
                 tab(icon: "person", idx: 2)
             }
-            .frame(height: 68)
+            .frame(height: ArtisticTabBar.height)
             .padding(.horizontal, 50)
-            .offset(y: -4) 
-            
+            .offset(y: -4)
         }
+        .frame(height: ArtisticTabBar.height)
     }
 
     @ViewBuilder

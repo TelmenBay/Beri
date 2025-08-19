@@ -17,8 +17,10 @@ struct WidgetsView: View {
                         .padding(.horizontal, 20)
                         .padding(.top, 4)
                 }
-                .padding(.bottom, 140)
+                .padding(.bottom, ArtisticTabBar.height + 16)
+                // Rely on safeAreaInset from the custom tab bar to provide bottom spacing
             }
+            .contentMargins(.bottom, 0, for: .scrollContent)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(UIColor.systemBackground).ignoresSafeArea())

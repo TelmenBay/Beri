@@ -23,16 +23,17 @@ struct HomeView: View {
                 Spacer()
             } else {
                 ScrollView {
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
-                        ForEach(model.widgets) { w in
-                            WidgetTile(widget: w)
-                                .onTapGesture { showWidgetInfo = true }
-                        }
+                    VStack(alignment: .leading, spacing: 24) {
+                        widgetSection(title: "Small", size: .small)
+                        widgetSection(title: "Medium", size: .medium)
+                        widgetSection(title: "Large", size: .large)
                     }
                     .padding(.horizontal, 20)
                     .padding(.top, 12)
-                    .padding(.bottom, 140)
+                    .padding(.bottom, ArtisticTabBar.height + 16)
+                    // Rely on safeAreaInset from the custom tab bar to provide bottom spacing
                 }
+                .contentMargins(.bottom, 0, for: .scrollContent)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -52,7 +53,7 @@ private struct WidgetTile: View {
     var body: some View {
         VStack {
             WidgetTilePreview(widget: widget)
-                .frame(height: 130)
+                .frame(width: widget.size.previewSize.width, height: widget.size.previewSize.height)
             Text(widget.size.rawValue)
                 .font(.caption)
                 .foregroundStyle(.secondary)
@@ -212,6 +213,36 @@ private struct WidgetTilePreview: View {
     private func image(at index: Int) -> UIImage? {
         guard index < widget.imageDatas.count else { return nil }
         return UIImage(data: widget.imageDatas[index])
+    }
+}
+
+// MARK: - Sections
+
+private extension HomeView {
+    @ViewBuilder
+    func widgetSection(title: String, size: WidgetSize) -> some View {
+        let items = model.widgets.filter { $0.size == size }
+        if !items.isEmpty {
+            VStack(alignment: .leading, spacing: 12) {
+                Text(title)
+                    .font(.headline)
+                LazyVGrid(columns: gridColumns(for: size), spacing: 16) {
+                    ForEach(items) { w in
+                        WidgetTile(widget: w)
+                            .onTapGesture { showWidgetInfo = true }
+                    }
+                }
+            }
+        }
+    }
+
+    func gridColumns(for size: WidgetSize) -> [GridItem] {
+        switch size {
+        case .small:
+            return [GridItem(.adaptive(minimum: 136), spacing: 16, alignment: .top)]
+        case .medium, .large:
+            return [GridItem(.adaptive(minimum: 252), spacing: 16, alignment: .top)]
+        }
     }
 }
 

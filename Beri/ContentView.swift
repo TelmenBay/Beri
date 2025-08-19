@@ -21,7 +21,7 @@ struct ContentView: View {
         }
         .environmentObject(model)
         .tabViewStyle(.page(indexDisplayMode: .never))
-        .safeAreaInset(edge: .bottom) {
+        .overlay(alignment: .bottom) {
             ArtisticTabBar(selection: $model.selectedTab)
                 .ignoresSafeArea(edges: .bottom)
         }
