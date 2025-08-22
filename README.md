@@ -8,6 +8,7 @@
  
 </div>
 
+<br />
 <div align="center">
   <img width="450" height="920" alt="Home Screen - iPhone" src="https://github.com/user-attachments/assets/d0ac4c57-be3a-49e0-8d42-dc30f354c801" />
 
