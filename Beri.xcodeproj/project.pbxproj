@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		AAC996272E585849008E1D30 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = AAC996142E585849008E1D30 /* .gitignore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		AAD654E32E4B0FD60096A1E7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -37,6 +41,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AAC996142E585849008E1D30 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		AAD654D52E4B0FD40096A1E7 /* Beri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beri.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD654E22E4B0FD60096A1E7 /* BeriTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeriTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD654EC2E4B0FD60096A1E7 /* BeriUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeriUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +95,7 @@
 		AAD654CC2E4B0FD40096A1E7 = {
 			isa = PBXGroup;
 			children = (
+				AAC996142E585849008E1D30 /* .gitignore */,
 				AAD654D72E4B0FD40096A1E7 /* Beri */,
 				AAD654E52E4B0FD60096A1E7 /* BeriTests */,
 				AAD654EF2E4B0FD60096A1E7 /* BeriUITests */,
@@ -238,6 +244,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAC996272E585849008E1D30 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

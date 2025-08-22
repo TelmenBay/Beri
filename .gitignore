@@ -1,0 +1,19 @@
+# Secrets and config
+*.env
+*.entitlements
+*.xcconfig
+GoogleService-Info.plist
+
+# Xcode build stuff
+DerivedData/
+*.xcuserstate
+*.xcworkspace/
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcuserdata/
+
+# Pods and dependencies
+Pods/
+
+# Ignore unit and UI tests
+BeriTests/
+BeriUITests/
