@@ -13,7 +13,7 @@ struct HomeView: View {
     @State private var showWidgetInfo: Bool = false
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        ZStack {
 
             if model.widgets.isEmpty {
                 Spacer()
@@ -65,10 +65,6 @@ private struct WidgetTilePreview: View {
     let widget: UserWidget
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 16)
-                .fill(widget.color)
-                .shadow(color: .black.opacity(0.12), radius: 10, x: 0, y: 6)
-
             switch widget.template {
             case .smallStickyNote, .largeStickyNote:
                 notePaper
@@ -79,8 +75,10 @@ private struct WidgetTilePreview: View {
             case .smallPolaroid, .largePolaroid:
                 polaroidStack(maxPhotos: 1)
             case .mediumTwoStickyNotes:
-                HStack(spacing: 8) { notePaper; notePaper }
-                    .padding(.horizontal, 8)
+                HStack(spacing: 8) {
+                    notePaper.frame(maxWidth: .infinity, maxHeight: .infinity)
+                    notePaper.frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
             case .mediumLongNote:
                 ruledPaper
             case .mediumLongMathNote:
@@ -89,6 +87,11 @@ private struct WidgetTilePreview: View {
                 polaroidStack(maxPhotos: 2)
             }
         }
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(Color.purple.opacity(0.18), lineWidth: 1)
+        )
     }
 
     private var notePaper: some View {
@@ -96,7 +99,6 @@ private struct WidgetTilePreview: View {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.white.opacity(0.96))
                 .shadow(color: .black.opacity(0.06), radius: 4, x: 0, y: 2)
-                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.black.opacity(0.08), lineWidth: 1))
                 .overlay(
                     Text(widget.text)
                         .font(.system(size: 16, weight: .semibold))
@@ -106,14 +108,12 @@ private struct WidgetTilePreview: View {
                 )
             WashiTape().frame(width: 40, height: 12).rotationEffect(.degrees(-12)).offset(x: 6, y: -6)
         }
-        .padding(12)
     }
 
     private var ruledPaper: some View {
         ZStack(alignment: .topLeading) {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.white.opacity(0.98))
-                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.black.opacity(0.08), lineWidth: 1))
                 .overlay(alignment: .top) { Rectangle().fill(Color.purple.opacity(0.18)).frame(height: 18).clipShape(RoundedCorner(radius: 10, corners: [.topLeft, .topRight])) }
                 .overlay(alignment: .leading) {
                     VStack { Circle().fill(Color.black.opacity(0.1)).frame(width: 8, height: 8); Spacer(); Circle().fill(Color.black.opacity(0.1)).frame(width: 8, height: 8); Spacer(); Circle().fill(Color.black.opacity(0.1)).frame(width: 8, height: 8) }
@@ -136,7 +136,6 @@ private struct WidgetTilePreview: View {
                         .padding(.top, 10)
                 )
         }
-        .padding(12)
     }
 
     private var gridPaper: some View {
@@ -165,7 +164,6 @@ private struct WidgetTilePreview: View {
                         .padding(.leading, 6)
                 }
         }
-        .padding(12)
     }
 
     private func polaroidStack(maxPhotos: Int) -> some View {

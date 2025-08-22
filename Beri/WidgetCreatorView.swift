@@ -163,24 +163,13 @@ struct WidgetCreatorView: View {
     @EnvironmentObject private var model: AppModel
 
     @State private var widgetText: String = "My Widget"
-    @State private var selectedColor: Color = Palette.primary
     @State private var selectedSize: WidgetSize = .small
     @State private var selectedTemplate: WidgetTemplate = .smallStickyNote
     @State private var pickedImages: [UIImage] = []
     @State private var showImagePicker: Bool = false
     @State private var imagePickerIndexToFill: Int? = nil
 
-    private let swatches: [Color] = [
-        Palette.primary,
-        Palette.primaryDark,
-        .purple,
-        .blue,
-        .green,
-        .yellow,
-        .orange,
-        .red,
-        Color(white: 0.9)
-    ]
+    // Removed color swatches; color is no longer user-selectable
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -188,11 +177,8 @@ struct WidgetCreatorView: View {
             Text("Preview")
                 .font(.headline)
                 .padding(.horizontal, 4)
-            WidgetPreview(color: selectedColor, text: widgetText, size: selectedSize, template: selectedTemplate, images: pickedImages)
+            WidgetPreview(color: Palette.primary, text: widgetText, size: selectedSize, template: selectedTemplate, images: pickedImages)
                 .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color(UIColor.secondarySystemBackground))
-                .clipShape(RoundedRectangle(cornerRadius: 16))
 
             // Size Picker
             Text("Size")
@@ -218,34 +204,12 @@ struct WidgetCreatorView: View {
             TextField("Enter text", text: $widgetText)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
 
-            // Color selector
-            Text("Color")
-                .font(.headline)
-                .padding(.horizontal, 4)
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 12) {
-                    ForEach(swatches.indices, id: \.self) { i in
-                        let color = swatches[i]
-                        Circle()
-                            .fill(color)
-                            .frame(width: 34, height: 34)
-                            .overlay(
-                                Circle().stroke(Color.white.opacity(0.8), lineWidth: selectedColor == color ? 3 : 0)
-                            )
-                            .onTapGesture { selectedColor = color }
-                    }
-                    ColorPicker("", selection: $selectedColor)
-                        .labelsHidden()
-                }
-                .padding(.leading, 2)
-                .padding(.trailing, 20)
-            }
+            // Color selector removed
 
             // Actions (UI only)
             HStack {
                 Button("Reset") {
                     widgetText = "My Widget"
-                    selectedColor = Palette.primary
                     selectedSize = .small
                     selectedTemplate = WidgetTemplate.allowedTemplates(for: selectedSize).first ?? .smallStickyNote
                     pickedImages = []
@@ -257,9 +221,9 @@ struct WidgetCreatorView: View {
                 Button("Save") {
                     // Save to local app model
                     let imageDatas = pickedImages.compactMap { $0.jpegData(compressionQuality: 0.9) }
-                    model.addWidget(text: widgetText, color: selectedColor, size: selectedSize, template: selectedTemplate, imageDatas: imageDatas)
+                    model.addWidget(text: widgetText, color: Palette.primary, size: selectedSize, template: selectedTemplate, imageDatas: imageDatas)
                     // Persist latest to App Group for WidgetKit
-                    WidgetStorage.saveLatest(text: widgetText, color: selectedColor, size: selectedSize, template: selectedTemplate, imageDatas: imageDatas)
+                    WidgetStorage.saveLatest(text: widgetText, color: Palette.primary, size: selectedSize, template: selectedTemplate, imageDatas: imageDatas)
                     // Switch to Home
                     model.selectedTab = 1
                 }
@@ -283,6 +247,7 @@ struct WidgetCreatorView: View {
 }
 
 private struct WidgetPreview: View {
+    // Color is fixed to primary to maintain contrast with full-bleed templates
     let color: Color
     let text: String
     let size: WidgetSize
@@ -291,11 +256,14 @@ private struct WidgetPreview: View {
 
     var body: some View {
         VStack {
-            RoundedRectangle(cornerRadius: 20)
-                .fill(color)
+            // Full-bleed preview clipped with a subtle border
+            templateOverlay
                 .frame(width: size.previewSize.width, height: size.previewSize.height)
-                .overlay { templateOverlay }
-                .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 6)
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color.purple.opacity(0.18), lineWidth: 1)
+                )
         }
         .frame(maxWidth: .infinity)
     }
