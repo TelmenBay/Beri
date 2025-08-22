@@ -1,10 +1,11 @@
 <br />
 <div align="center">
+  <h1 align="center">Beri</h3>
   <a href="https://github.com/TelmenBay/Beri">
-    <img width="1024" height="1024" alt="Group 2" src="https://github.com/user-attachments/assets/e2a60fbf-ba7d-49fb-8a21-0b77aea6255e" />
+    <img width="512" height="512" alt="Group 2" src="https://github.com/user-attachments/assets/e2a60fbf-ba7d-49fb-8a21-0b77aea6255e" />
   </a>
 
-  <h3 align="center">Beri</h3>
+ 
 </div>
 
 <div align="center">
